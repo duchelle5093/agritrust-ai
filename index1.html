@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgriTrust AI – Cultivez plus intelligemment</title>
+  <meta name="description" content="AgriTrust AI : l'intelligence artificielle qui transforme les données agricoles en décisions stratégiques."/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <!-- Font Awesome 6 (gratuit) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafaf5;
+      color: #1e1e1e;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ----- COULEURS ----- */
+    :root {
+      --vert-forêt: #1E5631;
+      --vert-clair: #4C9A2A;
+      --or: #D4A017;
+      --fond: #FAFAF5;
+      --blanc: #FFFFFF;
+      --gris: #4A4A4A;
+      --gris-clair: #E8E8E8;
+      --ombre: 0 20px 40px -12px rgba(0,0,0,0.08);
+    }
+
+    /* ----- BOUTONS ----- */
+    .btn-primary {
+      display: inline-block;
+      background: var(--vert-clair);
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(76, 154, 42, 0.3);
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(76, 154, 42, 0.45);
+      background: #3d7e22;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline-dark {
+      display: inline-block;
+      background: transparent;
+      color: var(--vert-forêt);
+      padding: 12px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid var(--vert-forêt);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-outline-dark:hover {
+      background: var(--vert-forêt);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* ----- TYPOGRAPHIE ----- */
+    h1, h2, h3 {
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(76, 154, 42, 0.12);
+      color: var(--vert-clair);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    /* ----- HEADER / NAV ----- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+
+    header.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      padding: 10px 0;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--blanc);
+      transition: color 0.3s;
+    }
+
+    header.scrolled .logo {
+      color: var(--vert-forêt);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+    }
+
+    header.scrolled .nav-links a {
+      color: #1e1e1e;
+    }
+
+    .nav-links a:hover {
+      color: var(--or);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 6px;
+      margin-left: 16px;
+      background: rgba(255,255,255,0.12);
+      padding: 6px 12px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    header.scrolled .lang-toggle {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .lang-toggle button {
+      background: transparent;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      color: rgba(255,255,255,0.6);
+    }
+
+    header.scrolled .lang-toggle button {
+      color: #1e1e1e;
+    }
+
+    .lang-toggle button.active {
+      background: var(--or);
+      color: #fff;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    header.scrolled .mobile-toggle {
+      color: var(--vert-forêt);
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #0f1f16;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(30, 86, 49, 0.6) 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(212, 160, 23, 0.2) 0%, transparent 40%),
+        linear-gradient(135deg, #0f1f16 0%, #1a3a28 100%);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234c9a2a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* particules */
+    #particles-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 120px 0 80px;
+      width: 100%;
+    }
+
+    .hero-text {
+      color: #fff;
+    }
+
+    .hero-text .badge {
+      display: inline-block;
+      background: rgba(212, 160, 23, 0.18);
+      border: 1px solid rgba(212, 160, 23, 0.25);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--or);
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 {
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .hero-text h1 span {
+      color: var(--or);
+    }
+
+    .hero-text p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-stats div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stats .number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .hero-stats .label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+    }
+
+    /* Dashboard mockup */
+    .hero-dashboard {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 24px 24px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-dashboard:hover {
+      transform: translateY(-6px);
+    }
+
+    .db-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .db-header .title {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .db-header .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .db-header .dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .db-header .dots span:first-child { background: #ef4444; }
+    .db-header .dots span:nth-child(2) { background: #f59e0b; }
+    .db-header .dots span:last-child { background: #10b981; }
+
+    .db-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .db-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 16px 14px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .db-card .label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .db-card .value {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 4px 0 2px;
+    }
+
+    .db-card .trend {
+      font-size: 0.7rem;
+      color: #10b981;
+    }
+
+    .db-card .trend.down { color: #ef4444; }
+
+    .db-map {
+      grid-column: 1 / -1;
+      background: rgba(255,255,255,0.04);
+      border-radius: 14px;
+      padding: 20px 16px;
+      border: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .db-map .map-placeholder {
+      flex: 1;
+      height: 60px;
+      background: linear-gradient(90deg, rgba(76,154,42,0.2), rgba(212,160,23,0.15), rgba(76,154,42,0.2));
+      border-radius: 10px;
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .db-map .map-label {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    /* ----- SECTIONS COMMUNES ----- */
+    section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header h2 {
+      color: var(--vert-forêt);
+    }
+
+    .section-header p {
+      color: var(--gris);
+      font-size: 1.1rem;
+      margin-top: 8px;
+    }
+
+    /* ----- SECTION 2 : Pourquoi AgriTrust ----- */
+    #pourquoi {
+      background: var(--fond);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: var(--blanc);
+      padding: 32px 24px 28px;
+      border-radius: 20px;
+      box-shadow: var(--ombre);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 50px -12px rgba(0,0,0,0.12);
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--vert-forêt);
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--gris);
+      line-height: 1.6;
+    }
+
+    /* ----- SECTION 3 : Acteurs ----- */
+    #acteurs {
+      background: var(--blanc);
+    }
+
+    .actors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .actor-card {
+      background: var(--fond);
+      padding: 36px 24px 30px;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid transparent;
+    }
+
+    .actor-card:hover {
+      border-color: var(--vert-clair);
+      transform: translateY(-4px);
+      box-shadow: var(--ombre);
+    }
+
+    .actor-card h3 {
+      color: var(--vert-forêt);
+      margin-bottom: 6px;
+    }
+
+    .actor-card p {
+      color: var(--gris);
+      font-size: 0.95rem;
+    }
+
+    /* ----- SECTION 4 : Fonctionnement (schéma) ----- */
+    #fonctionnement {
+      background: var(--fond);
+    }
+
+    .schema-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    .schema-step {
+      background: var(--blanc);
+      padding: 16px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--vert-forêt);
+      box-shadow: var(--ombre);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.3s;
+    }
+
+    .schema-step:hover {
+      transform: scale(1.04);
+      border-color: var(--vert-clair);
+    }
+
+    .schema-step.highlight {
+      background: var(--or);
+      color: #fff;
+      border-color: var(--or);
+    }
+
+    .schema-arrow {
+      color: var(--vert-clair);
+      font-size: 1.4rem;
+      opacity: 0.5;
+    }
+
+    /* ----- SECTION 5 : Fonctionnalités (grille) ----- */
+    #fonctionnalites {
+      background: var(--blanc);
+    }
+
+    .features-grid-large {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-tile {
+      background: var(--fond);
+      padding: 22px 16px;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      cursor: default;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--vert-forêt);
+    }
+
+    .feature-tile:hover {
+      border-color: var(--vert-clair);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--ombre);
+      background: #fff;
+    }
+
+    /* ----- SECTION 6 : Dashboard ----- */
+    #dashboard {
+      background: var(--fond);
+    }
+
+    .dashboard-showcase {
+      background: #0f1f16;
+      border-radius: 28px;
+      padding: 32px 28px 28px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+      transition: transform 0.4s ease;
+    }
+
+    .dashboard-showcase:hover {
+      transform: scale(1.005);
+    }
+
+    .db-full-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+    }
+
+    .db-main {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .db-main .db-map-large {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.04);
+      background-image: radial-gradient(circle at 20% 30%, rgba(76,154,42,0.15) 0%, transparent 60%);
+    }
+
+    .db-main .db-map-large .placeholder-text {
+      color: rgba(255,255,255,0.2);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .db-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .db-side .db-stat {
+      background: rgba(255,255,255,0.04);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .db-side .db-stat .label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      font-weight: 600;
+    }
+
+    .db-side .db-stat .value {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .db-side .db-stat .sub {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.75rem;
+    }
+
+    /* ----- SECTION 7 : Résultats (compteurs) ----- */
+    #resultats {
+      background: var(--vert-forêt);
+      color: #fff;
+    }
+
+    #resultats .section-header h2 {
+      color: #fff;
+    }
+
+    #resultats .section-header p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .counters-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+
+    .counter-item .number {
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: var(--or);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .counter-item .label {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      margin-top: 4px;
+    }
+
+    /* ----- SECTION 8 : Vision ----- */
+    #vision {
+      background: var(--blanc);
+      text-align: center;
+    }
+
+    #vision .vision-text {
+      max-width: 760px;
+      margin: 0 auto 20px;
+      font-size: 1.15rem;
+      color: var(--gris);
+      line-height: 1.8;
+    }
+
+    /* ----- SECTION 9 : Contact ----- */
+    #contact {
+      background: var(--fond);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      color: var(--vert-forêt);
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-info p {
+      color: var(--gris);
+      margin-bottom: 24px;
+    }
+
+    .contact-info ul {
+      list-style: none;
+    }
+
+    .contact-info ul li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--gris);
+    }
+
+    .contact-info ul li i {
+      color: var(--vert-clair);
+      width: 20px;
+    }
+
+    .contact-form {
+      background: var(--blanc);
+      padding: 36px 32px;
+      border-radius: 24px;
+      box-shadow: var(--ombre);
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 18px;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--vert-forêt);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1.5px solid var(--gris-clair);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border 0.3s;
+      background: var(--fond);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--vert-clair);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* ----- FOOTER ----- */
+    footer {
+      background: #0f1f16;
+      color: rgba(255,255,255,0.7);
+      padding: 48px 0 28px;
+    }
+
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer .brand .logo {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    footer .brand p {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      max-width: 300px;
+    }
+
+    footer h4 {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer ul li {
+      margin-bottom: 8px;
+    }
+
+    footer ul li a {
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    footer ul li a:hover {
+      color: var(--or);
+    }
+
+    footer .socials {
+      display: flex;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    footer .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      transition: all 0.3s;
+      color: rgba(255,255,255,0.6);
+    }
+
+    footer .socials a:hover {
+      background: var(--or);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    footer .bottom {
+      text-align: center;
+      padding-top: 24px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 140px 0 60px;
+      }
+
+      .hero-text p {
+        max-width: 100%;
+      }
+
+      .hero-dashboard {
+        max-width: 580px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .actors-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .counters-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        left: 20px;
+        padding: 24px 20px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        gap: 16px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        color: #1e1e1e !important;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .lang-toggle {
+        margin-left: 0;
+        background: rgba(0,0,0,0.04);
+      }
+
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .actors-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .counters-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .db-full-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .features-grid-large {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .schema-flow {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .schema-arrow {
+        transform: rotate(90deg);
+      }
+
+      footer .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid-large {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-secondary {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header id="header">
+    <div class="container">
+      <div class="logo">AgriTrust AI</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#pourquoi" data-i18n="nav_why">Pourquoi</a></li>
+        <li><a href="#acteurs" data-i18n="nav_actors">Acteurs</a></li>
+        <li><a href="#fonctionnalites" data-i18n="nav_features">Fonctionnalités</a></li>
+        <li><a href="#dashboard" data-i18n="nav_dashboard">Dashboard</a></li>
+        <li><a href="#vision" data-i18n="nav_vision">Vision</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        <li>
+          <div class="lang-toggle" id="langToggle">
+            <button class="active" data-lang="fr">FR</button>
+            <button data-lang="en">EN</button>
+          </div>
+        </li>
+      </ul>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container hero-content">
+      <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+        <div class="badge" data-i18n="hero_badge">AgriTech 4.0</div>
+        <h1 data-i18n="hero_title">Cultivez plus <br/><span>intelligemment.</span></h1>
+        <p data-i18n="hero_desc">L'intelligence artificielle qui transforme les données agricoles en décisions stratégiques.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary" data-i18n="hero_cta_demo">Demander une démonstration</a>
+          <a href="#pourquoi" class="btn-secondary" data-i18n="hero_cta_discover">Découvrir la plateforme</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <span class="number" data-i18n="hero_stat1_value">98%</span>
+            <span class="label" data-i18n="hero_stat1_label">Précision IA</span>
+          </div>
+          <div>
+            <span class="number" data-i18n="hero_stat2_value">24/7</span>
+            <span class="label" data-i18n="hero_stat2_label">Surveillance continue</span>
+          </div>
+          <div>
+            <span class="number" data-i18n="hero_stat3_value">100%</span>
+            <span class="label" data-i18n="hero_stat3_label">Accessible SMS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-dashboard" data-aos="fade-left" data-aos-duration="1200">
+        <div class="db-header">
+          <span class="title" data-i18n="db_title">Dashboard • Parcelle A12</span>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="db-grid">
+          <div class="db-card">
+            <div class="label" data-i18n="db_yield">Rendement prévu</div>
+            <div class="value">4.8 t/ha</div>
+            <div class="trend">▲ +12%</div>
+          </div>
+          <div class="db-card">
+            <div class="label" data-i18n="db_health">Santé des cultures</div>
+            <div class="value">96%</div>
+            <div class="trend">● Excellente</div>
+          </div>
+          <div class="db-card">
+            <div class="label" data-i18n="db_risk">Risque climatique</div>
+            <div class="value">Faible</div>
+            <div class="trend down">▼ 20%</div>
+          </div>
+          <div class="db-card">
+            <div class="label" data-i18n="db_price">Prix recommandé</div>
+            <div class="value">325 FCFA/kg</div>
+            <div class="trend">▲ +5%</div>
+          </div>
+          <div class="db-map">
+            <div class="map-placeholder"></div>
+            <span class="map-label" data-i18n="db_satellite">Satellite • Vue parcellaire</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2 : POURQUOI ========== -->
+  <section id="pourquoi">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" data-i18n="why_tag">Pourquoi AgriTrust ?</span>
+        <h2 data-i18n="why_title">Une seule plateforme pour piloter toute votre activité agricole.</h2>
+        <p data-i18n="why_sub">Une agriculture performante ne repose plus uniquement sur l'expérience. Elle repose sur des décisions éclairées par les données.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+          <h3 data-i18n="why_feature1_title">Surveillance satellitaire</h3>
+          <p data-i18n="why_feature1_desc">Analysez vos parcelles grâce aux images satellites et détectez rapidement les anomalies.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <h3 data-i18n="why_feature2_title">Intelligence artificielle</h3>
+          <p data-i18n="why_feature2_desc">Recevez des recommandations personnalisées selon vos cultures, votre localisation et les conditions climatiques.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <h3 data-i18n="why_feature3_title">Prévisions climatiques</h3>
+          <p data-i18n="why_feature3_desc">Anticipez les épisodes météorologiques susceptibles d'affecter votre production.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <h3 data-i18n="why_feature4_title">Accessible partout</h3>
+          <p data-i18n="why_feature4_desc">Fonctionne sur smartphone, ordinateur, SMS et USSD, même avec une faible connexion Internet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3 : ACTEURS ========== -->
+  <section id="acteurs">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" data-i18n="actors_tag">Écosystème</span>
+        <h2 data-i18n="actors_title">Une plateforme pensée pour tous les acteurs</h2>
+      </div>
+
+      <div class="actors-grid">
+        <div class="actor-card" data-aos="flip-up" data-aos-delay="0">
+          <h3 data-i18n="actors_farmer">Producteurs</h3>
+          <p data-i18n="actors_farmer_desc">Prenez de meilleures décisions au quotidien grâce à des recommandations intelligentes.</p>
+        </div>
+        <div class="actor-card" data-aos="flip-up" data-aos-delay="100">
+          <h3 data-i18n="actors_coop">Coopératives</h3>
+          <p data-i18n="actors_coop_desc">Suivez l'ensemble de vos membres et améliorez votre organisation.</p>
+        </div>
+        <div class="actor-card" data-aos="flip-up" data-aos-delay="200">
+          <h3 data-i18n="actors_agro">Agro-industries</h3>
+          <p data-i18n="actors_agro_desc">Sécurisez vos approvisionnements grâce aux prévisions de production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4 : FONCTIONNEMENT ========== -->
+  <section id="fonctionnement">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" data-i18n="flow_tag">Fonctionnement</span>
+        <h2 data-i18n="flow_title">Comment fonctionne AgriTrust ?</h2>
+      </div>
+
+      <div class="schema-flow" data-aos="fade-up">
+        <span class="schema-step" data-i18n="flow_step1">Satellite</span>
+        <span class="schema-arrow"><i class="fas fa-arrow-down"></i></span>
+        <span class="schema-step" data-i18n="flow_step2">Images agricoles</span>
+        <span class="schema-arrow"><i class="fas fa-arrow-down"></i></span>
+        <span class="schema-step" data-i18n="flow_step3">Intelligence Artificielle</span>
+        <span class="schema-arrow"><i class="fas fa-arrow-down"></i></span>
+        <span class="schema-step" data-i18n="flow_step4">Analyse des cultures</span>
+        <span class="schema-arrow"><i class="fas fa-arrow-down"></i></span>
+        <span class="schema-step" data-i18n="flow_step5">Prévisions de rendement</span>
+        <span class="schema-arrow"><i class="fas fa-arrow-down"></i></span>
+        <span class="schema-step" data-i18n="flow_step6">Alertes intelligentes</span>
+        <span class="schema-arrow"><i class="fas fa-arrow-down"></i></span>
+        <span class="schema-step" data-i18n="flow_step7">Marketplace</span>
+        <span class="schema-arrow"><i class="fas fa-arrow-down"></i></span>
+        <span class="schema-step highlight" data-i18n="flow_step8">Décisions stratégiques</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 5 : FONCTIONNALITÉS ========== -->
+  <section id="fonctionnalites">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" data-i18n="features_tag">Fonctionnalités</span>
+        <h2 data-i18n="features_title">Toutes les fonctionnalités</h2>
+      </div>
+
+      <div class="features-grid-large">
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="0" data-i18n="feat1">Observation satellite</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="30" data-i18n="feat2">Analyse IA</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="60" data-i18n="feat3">Santé des cultures</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="90" data-i18n="feat4">Prévisions météo</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="120" data-i18n="feat5">Prévision rendements</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="150" data-i18n="feat6">Alertes intelligentes</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="180" data-i18n="feat7">SMS</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="210" data-i18n="feat8">USSD</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="240" data-i18n="feat9">Marketplace</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="270" data-i18n="feat10">Dashboard</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="300" data-i18n="feat11">Gestion coopératives</div>
+        <div class="feature-tile" data-aos="zoom-in" data-aos-delay="330" data-i18n="feat12">Sécurité des données</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 6 : DASHBOARD ========== -->
+  <section id="dashboard">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" data-i18n="db_tag">Plateforme</span>
+        <h2 data-i18n="db_title_sec">Découvrez la plateforme</h2>
+        <p data-i18n="db_sub">Un tableau de bord moderne pour piloter vos cultures en temps réel.</p>
+      </div>
+
+      <div class="dashboard-showcase" data-aos="zoom-in-up">
+        <div class="db-full-grid">
+          <div class="db-main">
+            <div class="db-map-large">
+              <span class="placeholder-text" data-i18n="db_map_placeholder">Carte satellite • Parcelles suivies</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div style="background:rgba(255,255,255,0.04);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.04);">
+                <div style="font-size:0.65rem;color:rgba(255,255,255,0.3);text-transform:uppercase;font-weight:600;" data-i18n="db_chart1">Graphique rendement</div>
+                <div style="height:40px;display:flex;align-items:flex-end;gap:4px;margin-top:6px;">
+                  <div style="width:14%;height:30px;background:var(--vert-clair);border-radius:4px;"></div>
+                  <div style="width:14%;height:45px;background:var(--vert-clair);border-radius:4px;"></div>
+                  <div style="width:14%;height:60px;background:var(--or);border-radius:4px;"></div>
+                  <div style="width:14%;height:50px;background:var(--vert-clair);border-radius:4px;"></div>
+                  <div style="width:14%;height:70px;background:var(--or);border-radius:4px;"></div>
+                  <div style="width:14%;height:55px;background:var(--vert-clair);border-radius:4px;"></div>
+                  <div style="width:14%;height:80px;background:var(--or);border-radius:4px;"></div>
+                </div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.04);">
+                <div style="font-size:0.65rem;color:rgba(255,255,255,0.3);text-transform:uppercase;font-weight:600;" data-i18n="db_chart2">Prévisions météo</div>
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+                  <span style="font-size:0.8rem;color:rgba(255,255,255,0.6);">☀️ 28°</span>
+                  <span style="font-size:0.8rem;color:rgba(255,255,255,0.6);">⛅ 26°</span>
+                  <span style="font-size:0.8rem;color:rgba(255,255,255,0.6);">🌧 24°</span>
+                  <span style="font-size:0.8rem;color:rgba(255,255,255,0.6);">☀️ 29°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="db-side">
+            <div class="db-stat">
+              <div class="label" data-i18n="db_side_alerts">Alertes actives</div>
+              <div class="value">3</div>
+              <div class="sub" data-i18n="db_side_alerts_sub">• Risque pluie • Ravageur détecté • Carence azote</div>
+            </div>
+            <div class="db-stat">
+              <div class="label" data-i18n="db_side_contracts">Contrats à terme</div>
+              <div class="value">2</div>
+              <div class="sub" data-i18n="db_side_contracts_sub">• 12 t maïs • 8 t soja</div>
+            </div>
+            <div class="db-stat">
+              <div class="label" data-i18n="db_side_history">Historique</div>
+              <div class="value" style="font-size:0.9rem;">Dernière alerte : 02/07/2026</div>
+              <div class="sub" data-i18n="db_side_history_sub">Analyse complète disponible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 7 : RÉSULTATS ========== -->
+  <section id="resultats">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" style="background:rgba(255,255,255,0.08);color:var(--or);" data-i18n="results_tag">Résultats</span>
+        <h2 data-i18n="results_title">Des résultats concrets</h2>
+        <p data-i18n="results_sub">Des chiffres qui parlent d'eux-mêmes.</p>
+      </div>
+
+      <div class="counters-grid">
+        <div class="counter-item" data-aos="fade-up" data-aos-delay="0">
+          <span class="number" data-count="98">0%</span>
+          <span class="label" data-i18n="results_label1">Précision des analyses</span>
+        </div>
+        <div class="counter-item" data-aos="fade-up" data-aos-delay="100">
+          <span class="number" data-count="24">0</span>
+          <span class="label" data-i18n="results_label2">Surveillance continue (24/7)</span>
+        </div>
+        <div class="counter-item" data-aos="fade-up" data-aos-delay="200">
+          <span class="number" data-count="100">0%</span>
+          <span class="label" data-i18n="results_label3">Accessible via SMS</span>
+        </div>
+        <div class="counter-item" data-aos="fade-up" data-aos-delay="300">
+          <span class="number" data-count="100">0%</span>
+          <span class="label" data-i18n="results_label4">Prévisions actualisées en temps réel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 8 : VISION ========== -->
+  <section id="vision">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" data-i18n="vision_tag">Notre vision</span>
+        <h2 data-i18n="vision_title">Construire l'agriculture intelligente de demain.</h2>
+      </div>
+      <div class="vision-text" data-aos="fade-up" data-aos-delay="100">
+        <p data-i18n="vision_p1">Nous croyons qu'en combinant intelligence artificielle, données satellitaires et expertise agricole, il est possible de rendre les exploitations plus productives, plus résilientes et plus rentables.</p>
+        <p style="margin-top:20px;" data-i18n="vision_p2">Notre ambition est d'accompagner durablement la transformation numérique de l'agriculture en Afrique.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 9 : CONTACT ========== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag" data-i18n="contact_tag">Contact</span>
+        <h2 data-i18n="contact_title">Prêt à découvrir AgriTrust AI ?</h2>
+        <p data-i18n="contact_sub">Demandez une démonstration de la plateforme.</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info" data-aos="fade-right">
+          <h3 data-i18n="contact_info_title">Parlons de votre projet.</h3>
+          <p data-i18n="contact_info_desc">Notre équipe vous accompagne pour intégrer AgriTrust AI dans votre exploitation ou votre organisation.</p>
+          <ul>
+            <li><i class="fas fa-envelope"></i> <span>contact@agritrustai.info</span></li>
+            <li><i class="fas fa-phone"></i> <span>+237 655 53 10 37</span></li>
+            <li><i class="fas fa-map-marker-alt"></i> <span>Cameroun</span></li>
+          </ul>
+        </div>
+
+        <div class="contact-form" data-aos="fade-left">
+          <form id="contactForm">
+            <div class="form-group">
+              <label data-i18n="contact_form_name">Nom complet</label>
+              <input type="text" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_email">Email</label>
+              <input type="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_org">Organisation</label>
+              <input type="text" placeholder="Nom de votre structure">
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_message">Message</label>
+              <textarea placeholder="Parlez-nous de votre projet..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;" data-i18n="contact_form_submit">Nous contacter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="brand">
+          <div class="logo">AgriTrust AI</div>
+          <p data-i18n="footer_tagline">L'intelligence artificielle au service d'une agriculture durable.</p>
+          <div class="socials">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 data-i18n="footer_nav">Navigation</h4>
+          <ul>
+            <li><a href="#pourquoi" data-i18n="footer_nav_why">Pourquoi</a></li>
+            <li><a href="#acteurs" data-i18n="footer_nav_actors">Acteurs</a></li>
+            <li><a href="#fonctionnalites" data-i18n="footer_nav_features">Fonctionnalités</a></li>
+            <li><a href="#vision" data-i18n="footer_nav_vision">Vision</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer_legal">Légal</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer_legal_terms">Mentions légales</a></li>
+            <li><a href="#" data-i18n="footer_legal_privacy">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer_contact">Contact</h4>
+          <ul>
+            <li><a href="#contact" data-i18n="footer_contact_demo">Démonstration</a></li>
+            <li><a href="mailto:contact@agritrust.ai">contact@agritrust.ai</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom">
+        &copy; 2026 AgriTrust AI. <span data-i18n="footer_rights">Tous droits réservés.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // --- AOS init ---
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 60
+    });
+
+    // --- Mobile toggle ---
+    document.getElementById('mobileToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // --- Navbar scroll effect ---
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // --- PARTICULES ---
+    (function particles() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      const particles = [];
+      const count = 60;
+      const maxDist = 150;
+
+      function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        w = canvas.width;
+        h = canvas.height;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h;
+          this.vx = (Math.random() - 0.5) * 0.6;
+          this.vy = (Math.random() - 0.5) * 0.6;
+          this.r = 2 + Math.random() * 2;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          if (this.x < 0 || this.x > w) { this.vx *= -1; }
+          if (this.y < 0 || this.y > h) { this.vy *= -1; }
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(212, 160, 23, 0.5)';
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+
+      function drawLines() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              const alpha = 0.15 * (1 - dist / maxDist);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(212, 160, 23, ${alpha})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) {
+          p.update();
+          p.draw();
+        }
+        drawLines();
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // --- COUNTERS (count-up) ---
+    (function counters() {
+      const counters = document.querySelectorAll('.counter-item .number');
+      let animated = false;
+
+      function isVisible(el) {
+        const rect = el.getBoundingClientRect();
+        return rect.top < window.innerHeight - 40;
+      }
+
+      function animateCounter(el) {
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        if (isNaN(target)) return;
+        let current = 0;
+        const increment = Math.ceil(target / 60);
+        const interval = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
+          }
+          if (target === 24) {
+            el.textContent = current + '/7';
+          } else {
+            el.textContent = current + (target === 98 || target === 100 ? '%' : '');
+          }
+        }, 25);
+      }
+
+      function checkCounters() {
+        if (animated) return;
+        let allVisible = true;
+        for (const c of counters) {
+          if (!isVisible(c)) { allVisible = false; break; }
+        }
+        if (allVisible) {
+          animated = true;
+          for (const c of counters) {
+            animateCounter(c);
+          }
+        }
+      }
+
+      window.addEventListener('scroll', checkCounters);
+      window.addEventListener('resize', checkCounters);
+      setTimeout(checkCounters, 500);
+    })();
+
+    // --- BILINGUE (FR/EN) ---
+    (function i18n() {
+      const translations = {
+        fr: {
+          nav_why: 'Pourquoi',
+          nav_actors: 'Acteurs',
+          nav_features: 'Fonctionnalités',
+          nav_dashboard: 'Dashboard',
+          nav_vision: 'Vision',
+          nav_contact: 'Contact',
+          hero_badge: 'AgriTech 4.0',
+          hero_title: 'Cultivez plus <br/><span>intelligemment.</span>',
+          hero_desc: "L'intelligence artificielle qui transforme les données agricoles en décisions stratégiques.",
+          hero_cta_demo: 'Demander une démonstration',
+          hero_cta_discover: 'Découvrir la plateforme',
+          hero_stat1_value: '98%',
+          hero_stat1_label: 'Précision IA',
+          hero_stat2_value: '24/7',
+          hero_stat2_label: 'Surveillance continue',
+          hero_stat3_value: '100%',
+          hero_stat3_label: 'Accessible SMS',
+          db_title: 'Dashboard • Parcelle A12',
+          db_yield: 'Rendement prévu',
+          db_health: 'Santé des cultures',
+          db_risk: 'Risque climatique',
+          db_price: 'Prix recommandé',
+          db_satellite: 'Satellite • Vue parcellaire',
+          why_tag: 'Pourquoi AgriTrust ?',
+          why_title: 'Une seule plateforme pour piloter toute votre activité agricole.',
+          why_sub: 'Une agriculture performante ne repose plus uniquement sur l\'expérience. Elle repose sur des décisions éclairées par les données.',
+          why_feature1_title: 'Surveillance satellitaire',
+          why_feature1_desc: 'Analysez vos parcelles grâce aux images satellites et détectez rapidement les anomalies.',
+          why_feature2_title: 'Intelligence artificielle',
+          why_feature2_desc: 'Recevez des recommandations personnalisées selon vos cultures, votre localisation et les conditions climatiques.',
+          why_feature3_title: 'Prévisions climatiques',
+          why_feature3_desc: 'Anticipez les épisodes météorologiques susceptibles d\'affecter votre production.',
+          why_feature4_title: 'Accessible partout',
+          why_feature4_desc: 'Fonctionne sur smartphone, ordinateur, SMS et USSD, même avec une faible connexion Internet.',
+          actors_tag: 'Écosystème',
+          actors_title: 'Une plateforme pensée pour tous les acteurs',
+          actors_farmer: 'Producteurs',
+          actors_farmer_desc: 'Prenez de meilleures décisions au quotidien grâce à des recommandations intelligentes.',
+          actors_coop: 'Coopératives',
+          actors_coop_desc: "Suivez l'ensemble de vos membres et améliorez votre organisation.",
+          actors_agro: 'Agro-industries',
+          actors_agro_desc: 'Sécurisez vos approvisionnements grâce aux prévisions de production.',
+          flow_tag: 'Fonctionnement',
+          flow_title: 'Comment fonctionne AgriTrust ?',
+          flow_step1: 'Satellite',
+          flow_step2: 'Images agricoles',
+          flow_step3: 'Intelligence Artificielle',
+          flow_step4: 'Analyse des cultures',
+          flow_step5: 'Prévisions de rendement',
+          flow_step6: 'Alertes intelligentes',
+          flow_step7: 'Marketplace',
+          flow_step8: 'Décisions stratégiques',
+          features_tag: 'Fonctionnalités',
+          features_title: 'Toutes les fonctionnalités',
+          feat1: 'Observation satellite',
+          feat2: 'Analyse IA',
+          feat3: 'Santé des cultures',
+          feat4: 'Prévisions météo',
+          feat5: 'Prévision rendements',
+          feat6: 'Alertes intelligentes',
+          feat7: 'SMS',
+          feat8: 'USSD',
+          feat9: 'Marketplace',
+          feat10: 'Dashboard',
+          feat11: 'Gestion coopératives',
+          feat12: 'Sécurité des données',
+          db_tag: 'Plateforme',
+          db_title_sec: 'Découvrez la plateforme',
+          db_sub: 'Un tableau de bord moderne pour piloter vos cultures en temps réel.',
+          db_map_placeholder: 'Carte satellite • Parcelles suivies',
+          db_chart1: 'Graphique rendement',
+          db_chart2: 'Prévisions météo',
+          db_side_alerts: 'Alertes actives',
+          db_side_alerts_sub: '• Risque pluie • Ravageur détecté • Carence azote',
+          db_side_contracts: 'Contrats à terme',
+          db_side_contracts_sub: '• 12 t maïs • 8 t soja',
+          db_side_history: 'Historique',
+          db_side_history_sub: 'Analyse complète disponible',
+          results_tag: 'Résultats',
+          results_title: 'Des résultats concrets',
+          results_sub: 'Des chiffres qui parlent d\'eux-mêmes.',
+          results_label1: 'Précision des analyses',
+          results_label2: 'Surveillance continue (24/7)',
+          results_label3: 'Accessible via SMS',
+          results_label4: 'Prévisions actualisées en temps réel',
+          vision_tag: 'Notre vision',
+          vision_title: "Construire l'agriculture intelligente de demain.",
+          vision_p1: 'Nous croyons qu\'en combinant intelligence artificielle, données satellitaires et expertise agricole, il est possible de rendre les exploitations plus productives, plus résilientes et plus rentables.',
+          vision_p2: 'Notre ambition est d\'accompagner durablement la transformation numérique de l\'agriculture en Afrique.',
+          contact_tag: 'Contact',
+          contact_title: 'Prêt à découvrir AgriTrust AI ?',
+          contact_sub: 'Demandez une démonstration de la plateforme.',
+          contact_info_title: 'Parlons de votre projet.',
+          contact_info_desc: 'Notre équipe vous accompagne pour intégrer AgriTrust AI dans votre exploitation ou votre organisation.',
+          contact_form_name: 'Nom complet',
+          contact_form_email: 'Email',
+          contact_form_org: 'Organisation',
+          contact_form_message: 'Message',
+          contact_form_submit: 'Nous contacter',
+          footer_tagline: "L'intelligence artificielle au service d'une agriculture durable.",
+          footer_nav: 'Navigation',
+          footer_nav_why: 'Pourquoi',
+          footer_nav_actors: 'Acteurs',
+          footer_nav_features: 'Fonctionnalités',
+          footer_nav_vision: 'Vision',
+          footer_legal: 'Légal',
+          footer_legal_terms: 'Mentions légales',
+          footer_legal_privacy: 'Politique de confidentialité',
+          footer_contact: 'Contact',
+          footer_contact_demo: 'Démonstration',
+          footer_rights: 'Tous droits réservés.'
+        },
+        en: {
+          nav_why: 'Why',
+          nav_actors: 'Actors',
+          nav_features: 'Features',
+          nav_dashboard: 'Dashboard',
+          nav_vision: 'Vision',
+          nav_contact: 'Contact',
+          hero_badge: 'AgriTech 4.0',
+          hero_title: 'Farm smarter.<br/><span>With confidence.</span>',
+          hero_desc: 'AI that turns agricultural data into strategic decisions.',
+          hero_cta_demo: 'Request a demo',
+          hero_cta_discover: 'Discover the platform',
+          hero_stat1_value: '98%',
+          hero_stat1_label: 'AI Accuracy',
+          hero_stat2_value: '24/7',
+          hero_stat2_label: 'Continuous monitoring',
+          hero_stat3_value: '100%',
+          hero_stat3_label: 'SMS accessible',
+          db_title: 'Dashboard • Plot A12',
+          db_yield: 'Yield forecast',
+          db_health: 'Crop health',
+          db_risk: 'Climate risk',
+          db_price: 'Recommended price',
+          db_satellite: 'Satellite • Field view',
+          why_tag: 'Why AgriTrust ?',
+          why_title: 'A single platform to manage your entire farming operation.',
+          why_sub: 'High-performing agriculture is no longer based solely on experience. It relies on data-driven decisions.',
+          why_feature1_title: 'Satellite monitoring',
+          why_feature1_desc: 'Analyze your fields with satellite imagery and detect anomalies quickly.',
+          why_feature2_title: 'Artificial Intelligence',
+          why_feature2_desc: 'Receive personalized recommendations based on your crops, location, and weather conditions.',
+          why_feature3_title: 'Climate forecasting',
+          why_feature3_desc: 'Anticipate weather events that could affect your production.',
+          why_feature4_title: 'Accessible everywhere',
+          why_feature4_desc: 'Works on smartphones, computers, SMS, and USSD – even with low connectivity.',
+          actors_tag: 'Ecosystem',
+          actors_title: 'A platform built for every stakeholder',
+          actors_farmer: 'Farmers',
+          actors_farmer_desc: 'Make better daily decisions with intelligent recommendations.',
+          actors_coop: 'Cooperatives',
+          actors_coop_desc: 'Track all your members and improve your organization.',
+          actors_agro: 'Agro-industries',
+          actors_agro_desc: 'Secure your supply chain with production forecasts.',
+          flow_tag: 'How it works',
+          flow_title: 'How does AgriTrust work ?',
+          flow_step1: 'Satellite',
+          flow_step2: 'Agricultural images',
+          flow_step3: 'Artificial Intelligence',
+          flow_step4: 'Crop analysis',
+          flow_step5: 'Yield forecasts',
+          flow_step6: 'Smart alerts',
+          flow_step7: 'Marketplace',
+          flow_step8: 'Strategic decisions',
+          features_tag: 'Features',
+          features_title: 'All the features',
+          feat1: 'Satellite observation',
+          feat2: 'AI analysis',
+          feat3: 'Crop health',
+          feat4: 'Weather forecasts',
+          feat5: 'Yield forecasting',
+          feat6: 'Smart alerts',
+          feat7: 'SMS',
+          feat8: 'USSD',
+          feat9: 'Marketplace',
+          feat10: 'Dashboard',
+          feat11: 'Cooperative management',
+          feat12: 'Data security',
+          db_tag: 'Platform',
+          db_title_sec: 'Discover the platform',
+          db_sub: 'A modern dashboard to manage your crops in real time.',
+          db_map_placeholder: 'Satellite map • Monitored plots',
+          db_chart1: 'Yield chart',
+          db_chart2: 'Weather forecast',
+          db_side_alerts: 'Active alerts',
+          db_side_alerts_sub: '• Rain risk • Pest detected • Nitrogen deficiency',
+          db_side_contracts: 'Term contracts',
+          db_side_contracts_sub: '• 12 t corn • 8 t soy',
+          db_side_history: 'History',
+          db_side_history_sub: 'Full analysis available',
+          results_tag: 'Results',
+          results_title: 'Concrete results',
+          results_sub: 'Numbers that speak for themselves.',
+          results_label1: 'Analysis accuracy',
+          results_label2: 'Continuous monitoring (24/7)',
+          results_label3: 'Accessible via SMS',
+          results_label4: 'Real-time updated forecasts',
+          vision_tag: 'Our vision',
+          vision_title: 'Building the smart agriculture of tomorrow.',
+          vision_p1: 'We believe that by combining AI, satellite data, and agricultural expertise, we can make farms more productive, resilient, and profitable.',
+          vision_p2: 'Our ambition is to sustainably support the digital transformation of agriculture in Africa.',
+          contact_tag: 'Contact',
+          contact_title: 'Ready to discover AgriTrust AI ?',
+          contact_sub: 'Request a demo of the platform.',
+          contact_info_title: 'Let\'s talk about your project.',
+          contact_info_desc: 'Our team will help you integrate AgriTrust AI into your farm or organization.',
+          contact_form_name: 'Full name',
+          contact_form_email: 'Email',
+          contact_form_org: 'Organization',
+          contact_form_message: 'Message',
+          contact_form_submit: 'Contact us',
+          footer_tagline: "AI for sustainable agriculture.",
+          footer_nav: 'Navigation',
+          footer_nav_why: 'Why',
+          footer_nav_actors: 'Actors',
+          footer_nav_features: 'Features',
+          footer_nav_vision: 'Vision',
+          footer_legal: 'Legal',
+          footer_legal_terms: 'Terms of use',
+          footer_legal_privacy: 'Privacy policy',
+          footer_contact: 'Contact',
+          footer_contact_demo: 'Demo',
+          footer_rights: 'All rights reserved.'
+        }
+      };
+
+      let currentLang = 'fr';
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        if (!t) return;
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) {
+            if (t[key].includes('<')) {
+              el.innerHTML = t[key];
+            } else {
+              el.textContent = t[key];
+            }
+          }
+        });
+
+        document.querySelectorAll('#langToggle button').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+
+        document.documentElement.lang = lang;
+      }
+
+      document.querySelectorAll('#langToggle button').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+
+      setLanguage('fr');
+    })();
+
+    // --- Contact form ---
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci ! Votre message a été envoyé. Nous vous répondrons dans les plus brefs délais.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
